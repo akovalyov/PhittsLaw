@@ -4,10 +4,10 @@ $(document).ready(function(){
 	//НАЖАТИЕ_НА_КНОПКУ_ВЫБОРА_МЕНЮ_ИЗ_СПИСКА
 	$('#btn-set-setting').on('click',function(){
 		var name = $('.form-control').val();
-		console.log('Отлично вы выбрали меню - '+ name +'');
+		console.log('Отлично, Вы выбрали меню - '+ name +'');
 		switch ( name ){
 			case 'Parcket':
-				console.log('немного подождите пока я отрисую Вам параметры для Вашего меню!');
+				console.log('Немного подождите, пока я отрисую Вам параметры для Вашего меню!');
 				$('.panel-body').empty();
 				$('.panel-body').append('<h4> Над сколькими пользователями Вы хотите провести эксперименты ?');
 				$('.panel-body').append('<input type="text" id="menu-people"><br>');
@@ -21,12 +21,12 @@ $(document).ready(function(){
 	$('.panel-body').on('click','#menu-people-btn',function(){
 		var num = parseInt($('#menu-people').val());
 		if ( num == 0) {
-			alert('Эммм...наврятли нуль человек пройдет тест..');
+			alert('Эммм... Навряд ли нуль человек пройдет тест..');
 		} else {
 			console.log('Отлично! Вы на полпути к тому чтобы все рассчитать!');
 			$('.panel-body').empty();
 			localStorage.setItem('userIndex',num);
-			console.log('Программа сохранила информацию о ваших полоьзователях в localStorage');
+			console.log('Программа сохранила информацию о ваших пользователях в localStorage');
 			for ( var i = 0; i < num; i++ ){
 				var m = i+1;
 				$('.panel-body').append('<label>Задайте a для Пользователя ' + m +'<input type="text" id="menu-user-a-'+i+'" value="197.61" placeholder="197.61" "></label><br>');
@@ -40,18 +40,18 @@ $(document).ready(function(){
 	//НАЖАТИЕ_НА_КНОПКУ_СОХРАНИТЬ_НАСТРОЙКИ_ПОЛЬЗОВАТЕЛЕЙ
 	$('.panel-body').on('click','#menu-people-settings',function(){
 		var num = localStorage.getItem('userIndex');
-		console.log('Насколько я помню у вас - '+num+' пользователь(я)');
+		console.log('Насколько я помню, у Вас - '+num+' пользователь(я)');
 		for ( var i = 0 ; i < num ; i++){
 			localStorage.setItem('user'+i+'a',$('#menu-user-a-'+i+'').val());
 			localStorage.setItem('user'+i+'b',$('#menu-user-b-'+i+'').val());
 		}
 		console.log(localStorage);
-		console.log('Отлично я запомнил все ваши данные.');
+		console.log('Отлично, я запомнил все ваши данные.');
 		$('.panel-body').empty();
 		$('.panel-body').append('Теперь задайте значения для вашего меню.<br>');
 		$('.panel-body').append('Количество элементов меню <br>');
 		$('.panel-body').append('<select class="form-control-parcket" id="menu-select-col"><option value="4">4</option><option value="6">6</option><option value="8">8</option></select><br>');
-		$('.panel-body').append('Шириан элементов<br>');
+		$('.panel-body').append('Ширина элементов<br>');
 		$('.panel-body').append('<select class="form-control-parcket" id="menu-select-width"><option value="40">40</option><option value="80">80</option><option value="120">120</option><option value="160">160</option><option value="200">200</option><option value="240">240</option><option value="280">280</option></select><br>');
 		$('.panel-body').append('Высота элемента<br>');
 		$('.panel-body').append('<select class="form-control-parcket" id="menu-select-height"><option value="40">40</option><option value="80">80</option><option value="120">120</option><option value="160">160</option><option value="200">200</option><option value="240">240</option><option value="280">280</option></select><br>');
@@ -60,7 +60,7 @@ $(document).ready(function(){
 	});
 	//НАЖАТИЕ_НА_КНОПКУ_СОХРАНИТЬ_ЗАДАННЫЕ_ДАННЫЕ_ДЛЯ_ПОСТРОЕНИЯ_МЕНЮ
 	$('.panel-body').on('click','#menu-save-menu',function(){
-		console.log('Отлично теперь по зданным по раметрам я отрисую и рачитаю тебе характеристики!');
+		console.log('Отлично, теперь по заданным параметрам я отрисую и рассчитаю характеристики для Вас!');
 		localStorage.setItem('width',$('#menu-select-width').val());
 		localStorage.setItem('height',$('#menu-select-height').val());
 		localStorage.setItem('col',$('#menu-select-col').val());
@@ -73,7 +73,7 @@ $(document).ready(function(){
 	//ФУНКЦИЯ_ОТРИСОВКИ_МЕНЮ
 	function buildMenuofCharacteristics(){
 		$('.panel-body').empty();
-		console.log('Теперь я возьмусь за твое меню, для начала получим все данные из локального хранилища!');
+		console.log('Теперь я возьмусь за Ваше меню, для начала получим все данные из локального хранилища!');
 		var num = localStorage.getItem('col');
 		var inter = 0;
 		for ( var i = 0; i < 2; i++){
@@ -97,14 +97,14 @@ $(document).ready(function(){
 			elemTr++;
 			for ( var jj = 0; jj < num / 2 ; jj++ ){
 				if ( elemTr = ii ) {
-					//проверка стоят ли элементы на одной строке
+					//проверка, стоят ли элементы на одной строке
 					 if ( elemInter == jj ) {
 						 mass[ii][jj] = 0;
 						 elemInter ++;
 					 } else {
 						 if ( elemInter < jj ) {
 							 var razn = jj - elemInter;
-							//смотрю есть ли разница между элементами стоящими на одной строке
+							//смотрю, есть ли разница между элементами, стоящими на одной строке
 							mass[ii][jj] = parseInt(localStorage.getItem('width')) * razn;
 							elemInter++;
 						 }
@@ -116,7 +116,7 @@ $(document).ready(function(){
 						elemInter++;
 					} else {
 						if ( elemInter < jj ) {
-							 //вызов функции расчета расстояния
+							 //вызов функции рассчета расстояния
 							 var numm = jj*(ii+1);
 							 mass[ii][jj] = mathW('#menu-'+elemInter+'','#menu-'+numm+'')*2;
 							 elemInter++;
@@ -167,7 +167,7 @@ $(document).ready(function(){
 		}
 		
 		//РАСЧЕТ_СРЕДНИХ_ЗНАЧЕНИЙ-С_УЧЕТОМ_ПОЛЬЗОВАТЕЛЕЙ
-		var massW = 0; // средних значений W для каждого элемента
+		var massW = 0; // средние значения W для каждого элемента
 		var massD = 0; //  средние значения D для каждого элемента
 		var massWW = 0;
 		var massDD = 0;
@@ -231,7 +231,7 @@ $(document).ready(function(){
 					console.log(mass);
 		}
 		
-		console.log('Виски уже начал кончаться , но мы все же досчитали этот страх....Пора перейти к отображению всего этого счастья пользователю');
+		console.log('Виски уже начал кончаться , но мы все же досчитали этот страх... Пора перейти к отображению всего этого счастья пользователю');
 		//ОТРИСОВКА_ТАБЛИЦЫ
 		$('.panel-body').append('Значения Dij<br>');
 		$('.panel-body').append('<div class="table-responsive"><table class="table table-bordered table-hover"><tbody class="menu-table-w"></tbody>');
@@ -251,7 +251,7 @@ $(document).ready(function(){
 			}
 		}
 		//РАСЧЕТ_ХАРАКТЕРИСТИК_С_УЧЕТОМ_ВЕРОЯТНОСТЕЙ
-		$('.panel-body').append('Давайте представим что у вас есть свой сайт на котором , надо расположить элементы меню.</br>');
+		$('.panel-body').append('Давайте представим, что у Вас есть свой сайт на котором надо расположить элементы меню.</br>');
 		$('.panel-body').append('Отрисуем таблицу вероятностей выбора меню ( на данный момент это подходит только для 6 пунктов).</br>');
 		$('.panel-body').append('<div class="table-responsive"><table class="table table-bordered table-hover"><tbody><tr><td>1. Моя страница </td><td>0.25</td></tr><tr><td>2. Мои партнеры </td><td>0.17</td></tr><tr><td>3. Мои заказы </td><td>0.15</td></tr><tr><td>4. Сообщения </td><td>0.13</td></tr><tr><td>5. Мои компании </td><td>0.1</td></tr><tr><td>6. Люди </td><td>0.2</td></tr></tbody><br>');
 		var massVerFirst = [0.25,0.13,0.15,0.2,0.1,0.17]; //массив вероятностей для первого варианта
